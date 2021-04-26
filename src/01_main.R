@@ -16,7 +16,7 @@ source(here::here("src", "get_bayes_output.R"))
 source(here::here("src", "get_summary.R"))
 source(here::here("src", "get_simulation_runs.R"))
 
-n.pool <- c(10, 50, 100, 500, 1000)
+n.pool <- c(10,20,40, 50, 60, 80, 100, 500, 1000)
 trueb <- 0.6
 
 output <- vector("list", 5)
@@ -36,6 +36,8 @@ for(i in seq_along(n.pool)){
 output <- map(output, function(t){
   t %>% mutate(n=n.pool) %>% dplyr::select(n,everything())
 })
+
+
 
 saveRDS(output, file=here::here("data", "Nomissing_output.RDS"))
 

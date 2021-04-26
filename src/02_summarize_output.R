@@ -26,10 +26,10 @@ plot_dat <- do.call(rbind,output)
 cols <- c(brewer.pal(11, "Spectral")[c(2,3,9)], "gray47" ,"gray22")
 
 
-gg1 <- plot_dat %>% 
+gg1 <- plot_dat %>% filter(n %in% c(10, 20, 40, 50, 100, 500, 1000)) %>% 
   ggplot(aes(x=b_hat, y=n, group=method))+
-  geom_point(aes(color=method), size=1.5, position=position_dodge(width = 0.4))+
-  geom_errorbarh(aes(xmin=bmin, xmax=bmax, color=method), height=0.3,size=0.8, position=position_dodge(width = 0.4))+
+  geom_point(aes(color=method), size=1.2, position=position_dodge(width = 0.5))+
+  geom_errorbarh(aes(xmin=bmin, xmax=bmax, color=method), height=0.3,size=0.7, position=position_dodge(width = 0.5))+
   scale_color_manual(values=cols, name='Inference Method', na.translate = FALSE, 
                      labels=c("Bayes: prior center at -0.6", "Bayes: prior center at 0","Bayes: prior center at 0.6","Bayes: non-informative prior", "MLE"))+
   xlab("Estimates")+
@@ -41,10 +41,10 @@ print(gg1)
 
 ggsave(here::here("figures", "Estimates_full.pdf"))
   
-gg2 <- plot_dat[-1,] %>% 
+gg2 <- plot_dat[-c(1,2),] %>% filter(n %in% c(10, 20, 40, 50, 100, 500, 1000)) %>% 
    ggplot(aes(x=b_hat, y=n, group=method))+
-   geom_point(aes(color=method), size=1.5, position=position_dodge(width = 0.4))+
-   geom_errorbarh(aes(xmin=bmin, xmax=bmax, color=method), height=0.3,size=0.8, position=position_dodge(width = 0.4))+
+   geom_point(aes(color=method), size=1.2, position=position_dodge(width = 0.5))+
+   geom_errorbarh(aes(xmin=bmin, xmax=bmax, color=method), height=0.3,size=0.7, position=position_dodge(width = 0.5))+
    scale_color_manual(values=cols, name='Inference Method', na.translate = FALSE, 
                       labels=c("Bayes: prior center at -0.6", "Bayes: prior center at 0","Bayes: prior center at 0.6","Bayes: non-informative prior", "MLE"))+
    xlab("Estimates")+
