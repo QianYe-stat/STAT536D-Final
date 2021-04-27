@@ -31,7 +31,11 @@ gg1 <- plot_dat %>% filter(n %in% c(10, 20, 40, 50, 100, 500, 1000)) %>%
   geom_point(aes(color=method), size=1.2, position=position_dodge(width = 0.5))+
   geom_errorbarh(aes(xmin=bmin, xmax=bmax, color=method), height=0.3,size=0.7, position=position_dodge(width = 0.5))+
   scale_color_manual(values=cols, name='Inference Method', na.translate = FALSE, 
-                     labels=c("Bayes: prior center at -0.6", "Bayes: prior center at 0","Bayes: prior center at 0.6","Bayes: non-informative prior", "MLE"))+
+                     labels=c("Bayes: Prior 4 center at -0.6", 
+                              "Bayes: Prior 3 center at 0",
+                              "Bayes: Prior 2 center at 0.6",
+                              "Bayes: Prior 1 non-informative", 
+                              "MLE"))+
   xlab("Estimates")+
   ylab("Sample Size")+
   guides(color = guide_legend(reverse = TRUE)) +
@@ -46,7 +50,11 @@ gg2 <- plot_dat[-c(1,2),] %>% filter(n %in% c(10, 20, 40, 50, 100, 500, 1000)) %
    geom_point(aes(color=method), size=1.2, position=position_dodge(width = 0.5))+
    geom_errorbarh(aes(xmin=bmin, xmax=bmax, color=method), height=0.3,size=0.7, position=position_dodge(width = 0.5))+
    scale_color_manual(values=cols, name='Inference Method', na.translate = FALSE, 
-                      labels=c("Bayes: prior center at -0.6", "Bayes: prior center at 0","Bayes: prior center at 0.6","Bayes: non-informative prior", "MLE"))+
+                      labels=c("Bayes: Prior 4 center at -0.6", 
+                              "Bayes: Prior 3 center at 0",
+                              "Bayes: Prior 2 center at 0.6",
+                              "Bayes: Prior 1 non-informative", 
+                              "MLE"))+
    xlab("Estimates")+
    ylab("Sample Size")+
    guides(color = guide_legend(reverse = TRUE)) +
